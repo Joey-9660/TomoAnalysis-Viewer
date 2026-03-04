@@ -7,35 +7,16 @@
   },
   "releases": [
     {
-      "version": "1.2.0",
-      "date": "2026-02-15",
+      "version": "3.0.12",
+      "date": "2026-03-02",
       "latest": true,
-      "download_url": "#",
+      "download_url": "https://tomocube.box.com/s/r99e4kgud6oj56hchycghm1sa0mlel71",
       "notes": [
-        "Added batch export functionality for multiple datasets",
-        "Improved 3D rendering performance by 40%",
-        "Fixed memory leak when loading large tomographic files"
-      ]
-    },
-    {
-      "version": "1.1.0",
-      "date": "2025-10-20",
-      "latest": false,
-      "download_url": "#",
-      "notes": [
-        "New measurement tools for refractive index analysis",
-        "Added support for additional file formats (.h5, .tiff stack)"
-      ]
-    },
-    {
-      "version": "1.0.0",
-      "date": "2025-07-01",
-      "latest": false,
-      "download_url": "#",
-      "notes": [
-        "Initial release of TomoAnalysis Viewer",
-        "3D holotomography data visualization",
-        "Basic measurement and annotation tools"
+        "Free license activation — TomoAnalysis Viewer is now available for free (online, offline, and paid license activation supported)",
+        "Multiple viewing modes — 2D/3D View, Ortho View, Multi View, and Synced Control for flexible data inspection",
+        "Data Navigation — Browse, organize, and filter datasets with Favorites, Tags, and merged HT/FL thumbnail previews",
+        "Quantitative readouts — Line measurement, Histogram, Intensity plot, and Area plot for quick data assessment",
+        "Auto-update notification — Automatic version check with download link when a newer version is available (online only)"
       ]
     }
   ]
