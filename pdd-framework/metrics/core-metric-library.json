@@ -1,0 +1,352 @@
+{
+  "schema_version": "1.0.0",
+  "description": "Core Metric Library: Quantitative metrics for holotomography-based phenotype analysis in the PDD framework",
+  "last_updated": "2026-03-05",
+  "metrics": [
+    {
+      "id": "MET-001",
+      "name": "Cell Volume",
+      "category": "Morphological",
+      "unit": "μm³ (fL)",
+      "description": "Total volume of a single cell calculated from 3D RI tomogram segmentation.",
+      "measurement_source": "3D RI Tomogram",
+      "calculation_method": "Voxel counting within cell boundary after RI-based segmentation",
+      "typical_range": {
+        "adherent_cells": "1000-5000 fL",
+        "suspension_cells": "200-1500 fL"
+      },
+      "viewer_tool": "3D View + Volume Measurement",
+      "related_phenotypes": ["PHE-001", "PHE-014", "PHE-020", "PHE-022"]
+    },
+    {
+      "id": "MET-002",
+      "name": "Nuclear Volume",
+      "category": "Nuclear",
+      "unit": "μm³ (fL)",
+      "description": "Volume of the nucleus segmented from the 3D RI tomogram based on RI contrast with cytoplasm.",
+      "measurement_source": "3D RI Tomogram",
+      "calculation_method": "RI threshold-based nuclear segmentation; voxel counting",
+      "typical_range": {
+        "normal": "300-1500 fL",
+        "condensed": "<300 fL"
+      },
+      "viewer_tool": "3D View + Histogram",
+      "related_phenotypes": ["PHE-002"]
+    },
+    {
+      "id": "MET-003",
+      "name": "Mean Refractive Index",
+      "category": "Biophysical",
+      "unit": "dimensionless (RIU)",
+      "description": "Average refractive index value within the cell or specific subcellular region.",
+      "measurement_source": "3D RI Tomogram",
+      "calculation_method": "Mean of all voxel RI values within the segmented region",
+      "typical_range": {
+        "whole_cell": "1.355-1.385",
+        "nucleus": "1.355-1.365",
+        "cytoplasm": "1.360-1.390",
+        "lipid_droplet": "1.440-1.480"
+      },
+      "viewer_tool": "Histogram + Intensity Plot",
+      "related_phenotypes": ["PHE-010", "PHE-021", "PHE-023"]
+    },
+    {
+      "id": "MET-004",
+      "name": "RI Standard Deviation",
+      "category": "Biophysical",
+      "unit": "RIU",
+      "description": "Standard deviation of RI values within a cell, indicating intracellular heterogeneity.",
+      "measurement_source": "3D RI Tomogram",
+      "calculation_method": "Standard deviation of all voxel RI values within segmented cell region",
+      "typical_range": {
+        "homogeneous": "0.005-0.015",
+        "heterogeneous": "0.015-0.035"
+      },
+      "viewer_tool": "Histogram",
+      "related_phenotypes": ["PHE-002", "PHE-009", "PHE-021"]
+    },
+    {
+      "id": "MET-005",
+      "name": "Sphericity Index",
+      "category": "Morphological",
+      "unit": "dimensionless (0-1)",
+      "description": "Measure of how closely the cell shape approximates a sphere. Value of 1 = perfect sphere.",
+      "measurement_source": "3D RI Tomogram",
+      "calculation_method": "Ψ = (π^(1/3) × (6V)^(2/3)) / A, where V = volume, A = surface area",
+      "typical_range": {
+        "rounded": "0.7-0.95",
+        "spread": "0.3-0.6",
+        "blebbing": "0.2-0.5"
+      },
+      "viewer_tool": "3D View",
+      "related_phenotypes": ["PHE-003", "PHE-015"]
+    },
+    {
+      "id": "MET-006",
+      "name": "Nucleus-to-Cytoplasm RI Ratio",
+      "category": "Biophysical",
+      "unit": "dimensionless",
+      "description": "Ratio of mean nuclear RI to mean cytoplasmic RI, indicating relative molecular density distribution.",
+      "measurement_source": "3D RI Tomogram",
+      "calculation_method": "Mean RI (nucleus) / Mean RI (cytoplasm)",
+      "typical_range": {
+        "normal": "0.985-1.005",
+        "condensed_nucleus": ">1.005"
+      },
+      "viewer_tool": "Histogram + Line Measurement",
+      "related_phenotypes": ["PHE-002", "PHE-010", "PHE-023"]
+    },
+    {
+      "id": "MET-007",
+      "name": "Surface Roughness",
+      "category": "Morphological",
+      "unit": "μm",
+      "description": "Measure of membrane irregularity from the 3D surface reconstruction of the cell.",
+      "measurement_source": "3D RI Tomogram",
+      "calculation_method": "RMS deviation of surface vertices from best-fit ellipsoid",
+      "typical_range": {
+        "smooth": "0.1-0.3 μm",
+        "rough_blebbing": "0.3-1.0 μm"
+      },
+      "viewer_tool": "3D View",
+      "related_phenotypes": ["PHE-003"]
+    },
+    {
+      "id": "MET-008",
+      "name": "Dry Mass",
+      "category": "Biophysical",
+      "unit": "pg",
+      "description": "Total non-aqueous mass of the cell, directly proportional to integrated RI over cell volume.",
+      "measurement_source": "3D RI Tomogram",
+      "calculation_method": "m = (1/α) × ∫(n - n_medium) dV, where α = specific refractive increment (~0.18 mL/g for proteins)",
+      "typical_range": {
+        "small_cells": "20-100 pg",
+        "large_cells": "100-500 pg"
+      },
+      "viewer_tool": "Intensity Plot + Area Plot",
+      "related_phenotypes": ["PHE-006", "PHE-011", "PHE-014"]
+    },
+    {
+      "id": "MET-009",
+      "name": "Proliferation Index",
+      "category": "Population",
+      "unit": "cells/hour or fold-change",
+      "description": "Rate of cell population growth measured by cell counting over time.",
+      "measurement_source": "Time-lapse RI Tomogram",
+      "calculation_method": "Cell count at time T / Cell count at time 0; or linear regression of log(count) vs time",
+      "typical_range": {
+        "normal_growth": "1.5-3.0x per 24h (cell line dependent)",
+        "arrested": "<1.1x per 24h"
+      },
+      "viewer_tool": "Multi View (time-lapse)",
+      "related_phenotypes": ["PHE-004", "PHE-019"]
+    },
+    {
+      "id": "MET-010",
+      "name": "Dry Mass Growth Rate",
+      "category": "Biophysical",
+      "unit": "pg/hour",
+      "description": "Rate of change in cellular dry mass over time, a direct indicator of biomass accumulation.",
+      "measurement_source": "Time-lapse RI Tomogram",
+      "calculation_method": "ΔDry Mass / Δt between time points",
+      "typical_range": {
+        "growing": "2-10 pg/h",
+        "arrested": "<1 pg/h",
+        "decreasing": "negative values"
+      },
+      "viewer_tool": "Intensity Plot (time series)",
+      "related_phenotypes": ["PHE-006"]
+    },
+    {
+      "id": "MET-011",
+      "name": "Cell Height (Aspect Ratio)",
+      "category": "Morphological",
+      "unit": "μm or dimensionless ratio",
+      "description": "Maximum cell height or height-to-projected-area ratio indicating cell spreading/flattening.",
+      "measurement_source": "3D RI Tomogram",
+      "calculation_method": "Maximum z-extent of cell segmentation; or Height / sqrt(Projected Area)",
+      "typical_range": {
+        "rounded": "8-15 μm",
+        "spread_flat": "3-8 μm"
+      },
+      "viewer_tool": "Ortho View + Line Measurement",
+      "related_phenotypes": ["PHE-007", "PHE-018"]
+    },
+    {
+      "id": "MET-012",
+      "name": "Migration Speed",
+      "category": "Behavioral",
+      "unit": "μm/min",
+      "description": "Average velocity of cell center-of-mass displacement over time.",
+      "measurement_source": "Time-lapse RI Tomogram",
+      "calculation_method": "Total path length / Total observation time",
+      "typical_range": {
+        "fast": "0.5-2.0 μm/min",
+        "slow": "0.05-0.5 μm/min",
+        "arrested": "<0.05 μm/min"
+      },
+      "viewer_tool": "Multi View (time-lapse) + Synced Control",
+      "related_phenotypes": ["PHE-008"]
+    },
+    {
+      "id": "MET-013",
+      "name": "Migration Directionality",
+      "category": "Behavioral",
+      "unit": "dimensionless (0-1)",
+      "description": "Ratio of net displacement to total path length, indicating directed vs random migration.",
+      "measurement_source": "Time-lapse RI Tomogram",
+      "calculation_method": "Net displacement / Total path length",
+      "typical_range": {
+        "directed": "0.6-1.0",
+        "random": "0.1-0.4"
+      },
+      "viewer_tool": "Multi View (time-lapse)",
+      "related_phenotypes": ["PHE-008"]
+    },
+    {
+      "id": "MET-014",
+      "name": "Intracellular Particle Count",
+      "category": "Intracellular",
+      "unit": "count per cell",
+      "description": "Number of discrete high-RI or low-RI objects within the cytoplasm (vesicles, droplets, vacuoles).",
+      "measurement_source": "3D RI Tomogram",
+      "calculation_method": "Local extrema detection within cytoplasmic RI map; size and RI filtering",
+      "typical_range": {
+        "normal": "0-5",
+        "elevated": "5-20",
+        "high": ">20"
+      },
+      "viewer_tool": "3D View + Histogram",
+      "related_phenotypes": ["PHE-009", "PHE-017", "PHE-021"]
+    },
+    {
+      "id": "MET-015",
+      "name": "Cell Clustering Index",
+      "category": "Population / Spatial",
+      "unit": "dimensionless",
+      "description": "Measure of spatial aggregation in a cell population compared to random distribution.",
+      "measurement_source": "2D/3D RI Tomogram",
+      "calculation_method": "Nearest-neighbor distance ratio: observed mean / expected mean for random distribution",
+      "typical_range": {
+        "dispersed": "0.8-1.2",
+        "clustered": "0.2-0.6",
+        "highly_clustered": "<0.2"
+      },
+      "viewer_tool": "2D View + Multi View",
+      "related_phenotypes": ["PHE-012"]
+    },
+    {
+      "id": "MET-016",
+      "name": "Immune-Tumor Contact Ratio",
+      "category": "Immune / Spatial",
+      "unit": "dimensionless",
+      "description": "Fraction of tumor cells in direct contact with immune cells in co-culture assays.",
+      "measurement_source": "3D RI Tomogram (co-culture)",
+      "calculation_method": "Number of tumor cells with immune cell contact / Total tumor cells",
+      "typical_range": {
+        "low_engagement": "<0.2",
+        "moderate": "0.2-0.5",
+        "high_engagement": ">0.5"
+      },
+      "viewer_tool": "3D View + Multi View",
+      "related_phenotypes": ["PHE-012", "PHE-013"]
+    },
+    {
+      "id": "MET-017",
+      "name": "Cell Death Rate",
+      "category": "Viability",
+      "unit": "% per hour or % at endpoint",
+      "description": "Fraction of cells undergoing death (apoptotic or necrotic) in the observed population.",
+      "measurement_source": "Time-lapse RI Tomogram",
+      "calculation_method": "Morphological death event counting / Total cell count × 100",
+      "typical_range": {
+        "baseline": "<5% per 24h",
+        "moderate_effect": "5-30% per 24h",
+        "strong_effect": ">30% per 24h"
+      },
+      "viewer_tool": "Multi View (time-lapse)",
+      "related_phenotypes": ["PHE-013", "PHE-015", "PHE-016"]
+    },
+    {
+      "id": "MET-018",
+      "name": "Selectivity Index",
+      "category": "Targeted",
+      "unit": "dimensionless",
+      "description": "Ratio of drug effect on target cells vs non-target cells, measuring therapeutic window.",
+      "measurement_source": "Comparative analysis",
+      "calculation_method": "IC50 (non-target) / IC50 (target); or Death Rate (target) / Death Rate (non-target)",
+      "typical_range": {
+        "non_selective": "<2",
+        "moderately_selective": "2-10",
+        "highly_selective": ">10"
+      },
+      "viewer_tool": "Comparison across datasets",
+      "related_phenotypes": ["PHE-016"]
+    },
+    {
+      "id": "MET-019",
+      "name": "Vesicle Internalization Rate",
+      "category": "Intracellular / Kinetic",
+      "unit": "vesicles/cell/hour",
+      "description": "Rate of new vesicle formation within the cell, tracking endocytic or autophagic activity.",
+      "measurement_source": "Time-lapse RI Tomogram",
+      "calculation_method": "ΔVesicle count / Δt per cell",
+      "typical_range": {
+        "baseline": "0-2/h",
+        "active_internalization": "2-10/h",
+        "rapid": ">10/h"
+      },
+      "viewer_tool": "Multi View (time-lapse) + 3D View",
+      "related_phenotypes": ["PHE-017"]
+    },
+    {
+      "id": "MET-020",
+      "name": "Mitotic Index",
+      "category": "Proliferation",
+      "unit": "% or dimensionless",
+      "description": "Fraction of cells in mitosis at a given time point.",
+      "measurement_source": "3D RI Tomogram (population snapshot)",
+      "calculation_method": "Number of cells in mitosis (identified by morphology) / Total cell count × 100",
+      "typical_range": {
+        "normal": "2-8%",
+        "elevated": ">8%",
+        "arrested": "<1%"
+      },
+      "viewer_tool": "2D View + Multi View",
+      "related_phenotypes": ["PHE-019"]
+    },
+    {
+      "id": "MET-021",
+      "name": "Lipid Droplet Area Fraction",
+      "category": "Intracellular / Hepatotoxicity",
+      "unit": "% of cytoplasmic area",
+      "description": "Percentage of cytoplasmic area occupied by lipid droplets (high-RI spherical inclusions).",
+      "measurement_source": "3D RI Tomogram",
+      "calculation_method": "Total lipid droplet area / Cytoplasmic area × 100 (per z-slice or 3D volume fraction)",
+      "typical_range": {
+        "normal": "<5%",
+        "mild_steatosis": "5-15%",
+        "moderate_steatosis": "15-30%",
+        "severe_steatosis": ">30%"
+      },
+      "viewer_tool": "Histogram + 3D View",
+      "related_phenotypes": ["PHE-021"]
+    },
+    {
+      "id": "MET-022",
+      "name": "RI Texture Entropy",
+      "category": "Biophysical / Texture",
+      "unit": "dimensionless",
+      "description": "Shannon entropy of the RI distribution within a cell region, measuring structural complexity/disorder.",
+      "measurement_source": "3D RI Tomogram",
+      "calculation_method": "H = -Σ p(RI_i) × log2(p(RI_i)) from RI histogram bins",
+      "typical_range": {
+        "homogeneous": "2.0-3.5",
+        "heterogeneous": "3.5-5.0",
+        "highly_complex": ">5.0"
+      },
+      "viewer_tool": "Histogram",
+      "related_phenotypes": ["PHE-023"]
+    }
+  ]
+}

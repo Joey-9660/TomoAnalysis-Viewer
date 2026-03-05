@@ -1,0 +1,352 @@
+{
+  "schema_version": "1.0.0",
+  "description": "Phenotype Descriptor Library: Detailed definitions of cellular phenotypes identifiable via holotomography",
+  "last_updated": "2026-03-05",
+  "phenotypes": [
+    {
+      "id": "PHE-001",
+      "name": "Cell Volume Increase (Swelling)",
+      "category": "Morphological",
+      "description": "Increase in total cell volume typically associated with necrotic or early injury responses. Measured via 3D RI tomogram segmentation.",
+      "ht_observable": true,
+      "measurement_method": "3D volume rendering from RI tomogram; threshold-based segmentation",
+      "related_metrics": ["MET-001", "MET-003"],
+      "quantitative_threshold": {
+        "mild": "10-20% increase from baseline",
+        "moderate": "20-40% increase from baseline",
+        "severe": ">40% increase from baseline"
+      },
+      "associated_biology": ["Osmotic stress", "Necrosis", "Oncosis", "Early drug injury"]
+    },
+    {
+      "id": "PHE-002",
+      "name": "Nuclear Condensation",
+      "category": "Nuclear",
+      "description": "Reduction in nuclear volume with increased RI density, indicative of chromatin condensation during apoptosis.",
+      "ht_observable": true,
+      "measurement_method": "Nuclear segmentation from RI tomogram; RI histogram analysis of nuclear region",
+      "related_metrics": ["MET-002", "MET-004", "MET-006"],
+      "quantitative_threshold": {
+        "mild": "Nuclear RI increase 0.002-0.005",
+        "moderate": "Nuclear RI increase 0.005-0.01, volume decrease 15-30%",
+        "severe": "Nuclear RI increase >0.01, volume decrease >30%"
+      },
+      "associated_biology": ["Apoptosis", "Chromatin condensation", "Pyknosis"]
+    },
+    {
+      "id": "PHE-003",
+      "name": "Membrane Blebbing",
+      "category": "Membrane",
+      "description": "Formation of bulge-like protrusions on the cell membrane, a hallmark of late-stage apoptosis.",
+      "ht_observable": true,
+      "measurement_method": "Surface roughness analysis from 3D RI tomogram; sphericity index calculation",
+      "related_metrics": ["MET-005", "MET-007"],
+      "quantitative_threshold": {
+        "mild": "Sphericity index decrease 5-10%",
+        "moderate": "Sphericity index decrease 10-20%, visible protrusions",
+        "severe": "Sphericity index decrease >20%, multiple large blebs"
+      },
+      "associated_biology": ["Late apoptosis", "Cytoskeletal disruption", "Caspase activation"]
+    },
+    {
+      "id": "PHE-004",
+      "name": "Cell Cycle Arrest (G1/S Phase)",
+      "category": "Proliferation",
+      "description": "Arrest of cell division at G1/S checkpoint, observable as increased cell size uniformity and reduced mitotic figures.",
+      "ht_observable": true,
+      "measurement_method": "Population-level dry mass distribution analysis; cell size distribution narrowing",
+      "related_metrics": ["MET-001", "MET-008", "MET-009"],
+      "quantitative_threshold": {
+        "mild": "CV of dry mass decreases 10-20%",
+        "moderate": "CV of dry mass decreases 20-40%, reduced mitotic index",
+        "severe": "CV of dry mass decreases >40%, no mitotic figures"
+      },
+      "associated_biology": ["DNA damage response", "p53 activation", "CDK inhibition"]
+    },
+    {
+      "id": "PHE-005",
+      "name": "Cell Size Uniformity Change",
+      "category": "Morphological",
+      "description": "Shift in cell size distribution indicating synchronized or arrested cell populations.",
+      "ht_observable": true,
+      "measurement_method": "Projected area and volume distribution analysis across cell population",
+      "related_metrics": ["MET-001", "MET-009"],
+      "quantitative_threshold": {
+        "mild": "Size CV change 5-15%",
+        "moderate": "Size CV change 15-30%",
+        "severe": "Size CV change >30%"
+      },
+      "associated_biology": ["Cell cycle synchronization", "Differentiation", "Growth arrest"]
+    },
+    {
+      "id": "PHE-006",
+      "name": "Dry Mass Reduction",
+      "category": "Biophysical",
+      "description": "Decrease in total cellular dry mass indicating reduced protein/biomolecule content, typically during cytostatic or catabolic responses.",
+      "ht_observable": true,
+      "measurement_method": "Integrated RI-based dry mass calculation (dn/dc method)",
+      "related_metrics": ["MET-008", "MET-010"],
+      "quantitative_threshold": {
+        "mild": "Dry mass decrease 5-15%",
+        "moderate": "Dry mass decrease 15-30%",
+        "severe": "Dry mass decrease >30%"
+      },
+      "associated_biology": ["Autophagy", "Catabolism", "Cytostasis", "Nutrient deprivation"]
+    },
+    {
+      "id": "PHE-007",
+      "name": "Morphological Flattening",
+      "category": "Morphological",
+      "description": "Decrease in cell height with maintained or increased projected area, indicating cytoskeletal reorganization.",
+      "ht_observable": true,
+      "measurement_method": "3D aspect ratio calculation (height/projected area) from RI tomogram",
+      "related_metrics": ["MET-001", "MET-003", "MET-011"],
+      "quantitative_threshold": {
+        "mild": "Height reduction 10-20%",
+        "moderate": "Height reduction 20-35%",
+        "severe": "Height reduction >35%"
+      },
+      "associated_biology": ["EMT reversal", "Kinase inhibition", "Adhesion change", "Differentiation"]
+    },
+    {
+      "id": "PHE-008",
+      "name": "Reduced Motility / Migration",
+      "category": "Behavioral",
+      "description": "Decrease in cell migration speed and directionality, observable via time-lapse holotomography.",
+      "ht_observable": true,
+      "measurement_method": "Time-lapse tracking; displacement and velocity analysis",
+      "related_metrics": ["MET-012", "MET-013"],
+      "quantitative_threshold": {
+        "mild": "Speed reduction 20-40%",
+        "moderate": "Speed reduction 40-60%",
+        "severe": "Speed reduction >60% or complete arrest"
+      },
+      "associated_biology": ["Kinase inhibition", "Cytoskeletal disruption", "Anti-metastatic effect"]
+    },
+    {
+      "id": "PHE-009",
+      "name": "Cytoplasmic Vacuolization",
+      "category": "Intracellular",
+      "description": "Formation of visible vacuoles in the cytoplasm, detectable as low-RI regions within the cell body.",
+      "ht_observable": true,
+      "measurement_method": "Intracellular RI distribution analysis; local minima detection in cytoplasmic region",
+      "related_metrics": ["MET-003", "MET-014"],
+      "quantitative_threshold": {
+        "mild": "1-3 small vacuoles (<2μm)",
+        "moderate": "3-8 vacuoles or 1-3 large vacuoles (2-5μm)",
+        "severe": ">8 vacuoles or vacuoles >5μm"
+      },
+      "associated_biology": ["Autophagy", "Paraptosis", "ER stress", "Lysosomal dysfunction"]
+    },
+    {
+      "id": "PHE-010",
+      "name": "Refractive Index Increase (Cytoplasm)",
+      "category": "Biophysical",
+      "description": "Global increase in cytoplasmic RI indicating increased molecular density/concentration.",
+      "ht_observable": true,
+      "measurement_method": "Mean RI calculation within cytoplasmic ROI",
+      "related_metrics": ["MET-003", "MET-006"],
+      "quantitative_threshold": {
+        "mild": "RI increase 0.001-0.003",
+        "moderate": "RI increase 0.003-0.008",
+        "severe": "RI increase >0.008"
+      },
+      "associated_biology": ["Dehydration", "Protein aggregation", "Molecular crowding", "Stress response"]
+    },
+    {
+      "id": "PHE-011",
+      "name": "T-cell Activation Morphology",
+      "category": "Immune",
+      "description": "Morphological changes in T-cells upon activation: volume increase, RI redistribution, and pseudopodia formation.",
+      "ht_observable": true,
+      "measurement_method": "Single-cell volume and RI distribution analysis in immune cell population",
+      "related_metrics": ["MET-001", "MET-003", "MET-008"],
+      "quantitative_threshold": {
+        "mild": "Volume increase 15-30%, mild RI redistribution",
+        "moderate": "Volume increase 30-60%, visible pseudopodia",
+        "severe": "Volume increase >60%, blast-like morphology"
+      },
+      "associated_biology": ["TCR signaling", "Immune activation", "Clonal expansion"]
+    },
+    {
+      "id": "PHE-012",
+      "name": "Immune Cell Clustering",
+      "category": "Behavioral / Immune",
+      "description": "Spatial aggregation of immune cells, often around target cells in co-culture systems.",
+      "ht_observable": true,
+      "measurement_method": "Spatial distribution analysis; nearest-neighbor distance calculation; cluster identification",
+      "related_metrics": ["MET-015", "MET-016"],
+      "quantitative_threshold": {
+        "mild": "Clustering index 1.5-2x baseline",
+        "moderate": "Clustering index 2-4x baseline",
+        "severe": "Clustering index >4x baseline"
+      },
+      "associated_biology": ["Immune synapse formation", "Checkpoint inhibition response", "ADCC"]
+    },
+    {
+      "id": "PHE-013",
+      "name": "Tumor Cell Lysis (Co-culture)",
+      "category": "Immune / Cell Death",
+      "description": "Destruction of tumor cells by immune effector cells in co-culture, observable as tumor cell morphological disruption.",
+      "ht_observable": true,
+      "measurement_method": "Time-lapse monitoring of tumor cell integrity; counting lysis events",
+      "related_metrics": ["MET-001", "MET-003", "MET-017"],
+      "quantitative_threshold": {
+        "mild": "Lysis rate <20% at 72h",
+        "moderate": "Lysis rate 20-50% at 72h",
+        "severe": "Lysis rate >50% at 72h"
+      },
+      "associated_biology": ["CTL-mediated killing", "NK cell activity", "Immune checkpoint modulation"]
+    },
+    {
+      "id": "PHE-014",
+      "name": "Cell Shrinkage",
+      "category": "Morphological",
+      "description": "Decrease in cell volume typically associated with apoptosis, distinguished from swelling in necrosis.",
+      "ht_observable": true,
+      "measurement_method": "3D volume rendering from RI tomogram with time-course tracking",
+      "related_metrics": ["MET-001", "MET-003", "MET-008"],
+      "quantitative_threshold": {
+        "mild": "Volume decrease 10-20%",
+        "moderate": "Volume decrease 20-40%",
+        "severe": "Volume decrease >40%"
+      },
+      "associated_biology": ["Apoptosis", "AVD (Apoptotic Volume Decrease)", "Caspase activation"]
+    },
+    {
+      "id": "PHE-015",
+      "name": "Apoptotic Body Formation",
+      "category": "Cell Death",
+      "description": "Fragmentation of the dying cell into membrane-bound vesicles (apoptotic bodies) at the terminal stage of apoptosis.",
+      "ht_observable": true,
+      "measurement_method": "Particle counting and size analysis post-fragmentation from RI tomogram",
+      "related_metrics": ["MET-005", "MET-017"],
+      "quantitative_threshold": {
+        "mild": "Initial fragmentation, 2-5 bodies",
+        "moderate": "5-10 apoptotic bodies per cell",
+        "severe": ">10 apoptotic bodies, complete fragmentation"
+      },
+      "associated_biology": ["Terminal apoptosis", "Phagocytic clearance", "DAMP release"]
+    },
+    {
+      "id": "PHE-016",
+      "name": "Selective Cell Death in Target-positive Population",
+      "category": "Targeted / Cell Death",
+      "description": "Preferential cell death in antigen-expressing cells while antigen-negative cells remain viable.",
+      "ht_observable": true,
+      "measurement_method": "Differential viability analysis in mixed populations using RI-based cell classification",
+      "related_metrics": ["MET-017", "MET-018"],
+      "quantitative_threshold": {
+        "mild": "Selectivity index 2-5x",
+        "moderate": "Selectivity index 5-20x",
+        "severe": "Selectivity index >20x"
+      },
+      "associated_biology": ["ADC efficacy", "CAR-T specificity", "Targeted therapy selectivity"]
+    },
+    {
+      "id": "PHE-017",
+      "name": "Internalization Vesicle Formation",
+      "category": "Intracellular",
+      "description": "Formation of endocytic vesicles upon receptor-ligand binding and internalization.",
+      "ht_observable": true,
+      "measurement_method": "Intracellular particle tracking; vesicle counting from RI contrast",
+      "related_metrics": ["MET-014", "MET-019"],
+      "quantitative_threshold": {
+        "mild": "1-5 vesicles per cell",
+        "moderate": "5-15 vesicles per cell",
+        "severe": ">15 vesicles per cell"
+      },
+      "associated_biology": ["Receptor-mediated endocytosis", "ADC internalization", "Receptor downregulation"]
+    },
+    {
+      "id": "PHE-018",
+      "name": "Immune Cell Morphology Change (Inactivation)",
+      "category": "Immune",
+      "description": "Morphological shift toward quiescent/inactivated state in immune cells upon immunosuppressive treatment.",
+      "ht_observable": true,
+      "measurement_method": "Volume, RI distribution, and shape analysis of immune cell populations",
+      "related_metrics": ["MET-001", "MET-003", "MET-011"],
+      "quantitative_threshold": {
+        "mild": "Volume decrease 10-20%, mild RI homogenization",
+        "moderate": "Volume decrease 20-30%, significant morphological rounding",
+        "severe": "Volume decrease >30%, complete rounding with homogeneous RI"
+      },
+      "associated_biology": ["Immunosuppression", "Anti-inflammatory response", "Steroid effect"]
+    },
+    {
+      "id": "PHE-019",
+      "name": "Reduced Cell Proliferation",
+      "category": "Proliferation",
+      "description": "Decreased rate of cell division observable as reduced population growth and fewer mitotic events.",
+      "ht_observable": true,
+      "measurement_method": "Cell counting over time; mitotic event detection from morphological changes",
+      "related_metrics": ["MET-009", "MET-020"],
+      "quantitative_threshold": {
+        "mild": "Growth rate reduction 20-40%",
+        "moderate": "Growth rate reduction 40-70%",
+        "severe": "Growth rate reduction >70% or complete arrest"
+      },
+      "associated_biology": ["Cytostasis", "Anti-proliferative effect", "Senescence"]
+    },
+    {
+      "id": "PHE-020",
+      "name": "Cell Volume Decrease",
+      "category": "Morphological",
+      "description": "General reduction in cell volume across the population, distinct from apoptotic shrinkage by maintained viability.",
+      "ht_observable": true,
+      "measurement_method": "Population-level volume distribution from 3D RI tomograms",
+      "related_metrics": ["MET-001", "MET-003"],
+      "quantitative_threshold": {
+        "mild": "Mean volume decrease 5-15%",
+        "moderate": "Mean volume decrease 15-25%",
+        "severe": "Mean volume decrease >25%"
+      },
+      "associated_biology": ["Immunosuppression", "Quiescence", "Metabolic suppression"]
+    },
+    {
+      "id": "PHE-021",
+      "name": "Lipid Droplet Accumulation (Steatosis)",
+      "category": "Intracellular / Hepatotoxicity",
+      "description": "Accumulation of lipid droplets in hepatocytes, visible as high-RI spherical inclusions in the cytoplasm.",
+      "ht_observable": true,
+      "measurement_method": "High-RI spherical object detection and quantification within cytoplasm",
+      "related_metrics": ["MET-003", "MET-014", "MET-021"],
+      "quantitative_threshold": {
+        "mild": "1-5 droplets per cell, <10% cytoplasmic area",
+        "moderate": "5-15 droplets per cell, 10-30% cytoplasmic area",
+        "severe": ">15 droplets per cell, >30% cytoplasmic area"
+      },
+      "associated_biology": ["Drug-induced steatosis", "Lipid metabolism disruption", "NAFLD model"]
+    },
+    {
+      "id": "PHE-022",
+      "name": "Hepatocyte Swelling",
+      "category": "Morphological / Hepatotoxicity",
+      "description": "Increase in hepatocyte volume indicating cellular injury or osmotic imbalance in liver cell models.",
+      "ht_observable": true,
+      "measurement_method": "3D volume measurement from RI tomogram in hepatocyte cultures",
+      "related_metrics": ["MET-001", "MET-003"],
+      "quantitative_threshold": {
+        "mild": "Volume increase 15-25%",
+        "moderate": "Volume increase 25-50%",
+        "severe": "Volume increase >50%"
+      },
+      "associated_biology": ["Hepatocellular injury", "Bile acid toxicity", "Mitochondrial dysfunction"]
+    },
+    {
+      "id": "PHE-023",
+      "name": "Mitochondrial Morphology Change",
+      "category": "Intracellular",
+      "description": "Alterations in mitochondrial network organization detectable as RI texture changes in the perinuclear region.",
+      "ht_observable": true,
+      "measurement_method": "Texture analysis and RI heterogeneity measurement in perinuclear cytoplasmic region",
+      "related_metrics": ["MET-003", "MET-006", "MET-022"],
+      "quantitative_threshold": {
+        "mild": "RI texture change 5-15% from baseline",
+        "moderate": "RI texture change 15-30%, visible punctation",
+        "severe": "RI texture change >30%, fragmented mitochondrial network"
+      },
+      "associated_biology": ["Mitochondrial fission/fusion", "Oxidative stress", "Apoptotic signaling", "Drug-induced mitotoxicity"]
+    }
+  ]
+}

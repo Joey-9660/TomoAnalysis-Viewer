@@ -1,0 +1,46 @@
+{
+  "framework": "Phenotype-to-Decision Mapping (PDD)",
+  "version": "1.0.0",
+  "description": "A structured framework for mapping cellular phenotypes observed via holotomography to actionable drug-response decisions in preclinical and clinical research.",
+  "created": "2026-03-05",
+  "components": {
+    "drug_phenotype_mappings": "./mappings/drug-phenotype-mapping.json",
+    "core_metrics": "./metrics/core-metric-library.json",
+    "phenotype_descriptors": "./mappings/phenotype-descriptors.json"
+  },
+  "workflow": [
+    {
+      "step": 1,
+      "name": "Data Acquisition",
+      "description": "Acquire 3D holotomography (HT) and fluorescence (FL) data using Tomocube systems"
+    },
+    {
+      "step": 2,
+      "name": "Phenotype Identification",
+      "description": "Identify and classify cellular phenotypes from refractive index (RI) and morphological features"
+    },
+    {
+      "step": 3,
+      "name": "Metric Quantification",
+      "description": "Quantify phenotype parameters using the Core Metric Library"
+    },
+    {
+      "step": 4,
+      "name": "Drug-Phenotype Mapping",
+      "description": "Map observed phenotype changes to known drug-response patterns"
+    },
+    {
+      "step": 5,
+      "name": "Decision Support",
+      "description": "Generate actionable insights for drug efficacy, toxicity, and mechanism-of-action analysis"
+    }
+  ],
+  "therapeutic_areas": [
+    "Oncology",
+    "Immunology",
+    "Neuroscience",
+    "Infectious Disease",
+    "Cardiology",
+    "Hepatotoxicity"
+  ]
+}

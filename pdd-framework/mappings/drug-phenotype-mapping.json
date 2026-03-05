@@ -1,0 +1,281 @@
+{
+  "schema_version": "1.0.0",
+  "description": "Drug-Phenotype Mapping Table: Links drug classes/compounds to expected cellular phenotype changes observable via holotomography",
+  "last_updated": "2026-03-05",
+  "mappings": [
+    {
+      "id": "DPM-001",
+      "drug_class": "Cytotoxic - Alkylating Agent",
+      "example_compounds": ["Cisplatin", "Cyclophosphamide", "Carboplatin"],
+      "therapeutic_area": "Oncology",
+      "target_mechanism": "DNA cross-linking and strand breaks",
+      "expected_phenotypes": [
+        {
+          "phenotype_id": "PHE-001",
+          "name": "Cell Volume Increase (Swelling)",
+          "time_onset": "6-12h",
+          "severity_range": "moderate-to-severe"
+        },
+        {
+          "phenotype_id": "PHE-002",
+          "name": "Nuclear Condensation",
+          "time_onset": "12-24h",
+          "severity_range": "moderate-to-severe"
+        },
+        {
+          "phenotype_id": "PHE-003",
+          "name": "Membrane Blebbing",
+          "time_onset": "18-48h",
+          "severity_range": "severe"
+        },
+        {
+          "phenotype_id": "PHE-010",
+          "name": "Refractive Index Increase (Cytoplasm)",
+          "time_onset": "6-24h",
+          "severity_range": "mild-to-moderate"
+        }
+      ],
+      "decision_criteria": {
+        "efficacy_indicator": "Dose-dependent increase in cell death markers (volume change > 20%, RI shift > 0.005)",
+        "resistance_indicator": "No morphological change at expected IC50 concentration",
+        "toxicity_flag": "Non-selective morphological changes in control cell lines"
+      }
+    },
+    {
+      "id": "DPM-002",
+      "drug_class": "Cytotoxic - Antimetabolite",
+      "example_compounds": ["5-Fluorouracil", "Gemcitabine", "Methotrexate"],
+      "therapeutic_area": "Oncology",
+      "target_mechanism": "Inhibition of nucleotide synthesis / DNA replication",
+      "expected_phenotypes": [
+        {
+          "phenotype_id": "PHE-004",
+          "name": "Cell Cycle Arrest (G1/S Phase)",
+          "time_onset": "12-24h",
+          "severity_range": "moderate"
+        },
+        {
+          "phenotype_id": "PHE-005",
+          "name": "Cell Size Uniformity Change",
+          "time_onset": "24-48h",
+          "severity_range": "mild-to-moderate"
+        },
+        {
+          "phenotype_id": "PHE-006",
+          "name": "Dry Mass Reduction",
+          "time_onset": "24-72h",
+          "severity_range": "moderate"
+        }
+      ],
+      "decision_criteria": {
+        "efficacy_indicator": "Synchronized cell population with reduced proliferation rate (dry mass decrease > 15%)",
+        "resistance_indicator": "Maintained proliferative index despite treatment",
+        "toxicity_flag": "Rapid necrotic morphology without apoptotic intermediates"
+      }
+    },
+    {
+      "id": "DPM-003",
+      "drug_class": "Targeted Therapy - Kinase Inhibitor",
+      "example_compounds": ["Imatinib", "Erlotinib", "Sorafenib"],
+      "therapeutic_area": "Oncology",
+      "target_mechanism": "Selective inhibition of tyrosine/serine-threonine kinases",
+      "expected_phenotypes": [
+        {
+          "phenotype_id": "PHE-007",
+          "name": "Morphological Flattening",
+          "time_onset": "24-48h",
+          "severity_range": "mild-to-moderate"
+        },
+        {
+          "phenotype_id": "PHE-008",
+          "name": "Reduced Motility / Migration",
+          "time_onset": "12-36h",
+          "severity_range": "moderate"
+        },
+        {
+          "phenotype_id": "PHE-009",
+          "name": "Cytoplasmic Vacuolization",
+          "time_onset": "48-72h",
+          "severity_range": "mild"
+        }
+      ],
+      "decision_criteria": {
+        "efficacy_indicator": "Target-specific morphological shift (flattening + reduced migration without necrosis)",
+        "resistance_indicator": "Bypass pathway activation shown by maintained RI and morphology",
+        "toxicity_flag": "Off-target effects in non-expressing cell lines"
+      }
+    },
+    {
+      "id": "DPM-004",
+      "drug_class": "Immunotherapy - Checkpoint Inhibitor",
+      "example_compounds": ["Nivolumab", "Pembrolizumab", "Atezolizumab"],
+      "therapeutic_area": "Immuno-Oncology",
+      "target_mechanism": "PD-1/PD-L1 pathway blockade to restore T-cell activity",
+      "expected_phenotypes": [
+        {
+          "phenotype_id": "PHE-011",
+          "name": "T-cell Activation Morphology",
+          "time_onset": "24-48h",
+          "severity_range": "moderate"
+        },
+        {
+          "phenotype_id": "PHE-012",
+          "name": "Immune Cell Clustering",
+          "time_onset": "48-72h",
+          "severity_range": "moderate-to-severe"
+        },
+        {
+          "phenotype_id": "PHE-013",
+          "name": "Tumor Cell Lysis (Co-culture)",
+          "time_onset": "72-120h",
+          "severity_range": "variable"
+        }
+      ],
+      "decision_criteria": {
+        "efficacy_indicator": "Increased T-cell volume and clustering around tumor spheroids",
+        "resistance_indicator": "No change in immune cell-tumor interaction pattern",
+        "toxicity_flag": "Non-specific immune activation in healthy cell co-cultures"
+      }
+    },
+    {
+      "id": "DPM-005",
+      "drug_class": "Apoptosis Inducer - BCL-2 Inhibitor",
+      "example_compounds": ["Venetoclax", "Navitoclax", "Obatoclax"],
+      "therapeutic_area": "Oncology / Hematology",
+      "target_mechanism": "Inhibition of anti-apoptotic BCL-2 family proteins",
+      "expected_phenotypes": [
+        {
+          "phenotype_id": "PHE-002",
+          "name": "Nuclear Condensation",
+          "time_onset": "4-12h",
+          "severity_range": "moderate-to-severe"
+        },
+        {
+          "phenotype_id": "PHE-014",
+          "name": "Cell Shrinkage",
+          "time_onset": "6-18h",
+          "severity_range": "moderate"
+        },
+        {
+          "phenotype_id": "PHE-003",
+          "name": "Membrane Blebbing",
+          "time_onset": "8-24h",
+          "severity_range": "severe"
+        },
+        {
+          "phenotype_id": "PHE-015",
+          "name": "Apoptotic Body Formation",
+          "time_onset": "12-36h",
+          "severity_range": "severe"
+        }
+      ],
+      "decision_criteria": {
+        "efficacy_indicator": "Rapid onset apoptosis with classic morphological cascade (shrinkage → condensation → blebbing → fragmentation)",
+        "resistance_indicator": "MCL-1 dependent survival with no morphological change",
+        "toxicity_flag": "Platelet toxicity phenotype in thrombocyte co-cultures"
+      }
+    },
+    {
+      "id": "DPM-006",
+      "drug_class": "Antibody-Drug Conjugate (ADC)",
+      "example_compounds": ["Trastuzumab emtansine", "Brentuximab vedotin", "Enfortumab vedotin"],
+      "therapeutic_area": "Oncology",
+      "target_mechanism": "Targeted delivery of cytotoxic payload via antigen-specific antibody",
+      "expected_phenotypes": [
+        {
+          "phenotype_id": "PHE-016",
+          "name": "Selective Cell Death in Target-positive Population",
+          "time_onset": "24-72h",
+          "severity_range": "moderate-to-severe"
+        },
+        {
+          "phenotype_id": "PHE-017",
+          "name": "Internalization Vesicle Formation",
+          "time_onset": "2-6h",
+          "severity_range": "mild"
+        },
+        {
+          "phenotype_id": "PHE-009",
+          "name": "Cytoplasmic Vacuolization",
+          "time_onset": "12-48h",
+          "severity_range": "moderate"
+        }
+      ],
+      "decision_criteria": {
+        "efficacy_indicator": "Antigen-dependent cytotoxicity with bystander effect assessment",
+        "resistance_indicator": "Reduced antigen expression or impaired internalization",
+        "toxicity_flag": "Non-specific uptake and toxicity in antigen-negative cells"
+      }
+    },
+    {
+      "id": "DPM-007",
+      "drug_class": "Anti-inflammatory - Corticosteroid",
+      "example_compounds": ["Dexamethasone", "Prednisolone", "Budesonide"],
+      "therapeutic_area": "Immunology",
+      "target_mechanism": "Glucocorticoid receptor activation suppressing inflammatory gene expression",
+      "expected_phenotypes": [
+        {
+          "phenotype_id": "PHE-018",
+          "name": "Immune Cell Morphology Change (Inactivation)",
+          "time_onset": "6-24h",
+          "severity_range": "moderate"
+        },
+        {
+          "phenotype_id": "PHE-019",
+          "name": "Reduced Cell Proliferation",
+          "time_onset": "24-48h",
+          "severity_range": "mild-to-moderate"
+        },
+        {
+          "phenotype_id": "PHE-020",
+          "name": "Cell Volume Decrease",
+          "time_onset": "12-36h",
+          "severity_range": "mild"
+        }
+      ],
+      "decision_criteria": {
+        "efficacy_indicator": "Suppression of immune cell activation phenotype (reduced volume + flattening)",
+        "resistance_indicator": "Maintained inflammatory morphology despite treatment",
+        "toxicity_flag": "Excessive immunosuppression in mixed immune cell populations"
+      }
+    },
+    {
+      "id": "DPM-008",
+      "drug_class": "Hepatotoxicity Inducer",
+      "example_compounds": ["Acetaminophen (high dose)", "Valproic acid", "Amiodarone"],
+      "therapeutic_area": "Hepatotoxicity / Safety",
+      "target_mechanism": "Various hepatocellular damage mechanisms (mitochondrial, oxidative stress, steatosis)",
+      "expected_phenotypes": [
+        {
+          "phenotype_id": "PHE-021",
+          "name": "Lipid Droplet Accumulation (Steatosis)",
+          "time_onset": "24-72h",
+          "severity_range": "moderate-to-severe"
+        },
+        {
+          "phenotype_id": "PHE-022",
+          "name": "Hepatocyte Swelling",
+          "time_onset": "12-48h",
+          "severity_range": "moderate"
+        },
+        {
+          "phenotype_id": "PHE-023",
+          "name": "Mitochondrial Morphology Change",
+          "time_onset": "6-24h",
+          "severity_range": "mild-to-moderate"
+        },
+        {
+          "phenotype_id": "PHE-010",
+          "name": "Refractive Index Increase (Cytoplasm)",
+          "time_onset": "12-48h",
+          "severity_range": "moderate"
+        }
+      ],
+      "decision_criteria": {
+        "efficacy_indicator": "N/A (toxicity model)",
+        "resistance_indicator": "N/A",
+        "toxicity_flag": "Dose-dependent lipid accumulation and RI increase in hepatocyte models (RI shift > 0.008)"
+      }
+    }
+  ]
+}

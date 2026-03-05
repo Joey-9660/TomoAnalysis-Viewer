@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoC Report Template - PDD Framework</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Titillium+Web:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Titillium Web', sans-serif; }
+        .editable { background-color: #fefce8; border: 1px dashed #facc15; padding: 2px 6px; border-radius: 4px; }
+        @media print { .no-print { display: none; } .editable { background: none; border: none; padding: 0; } }
+    </style>
+</head>
+<body class="bg-white text-gray-800 max-w-4xl mx-auto px-8 py-12">
+
+    <div class="no-print bg-blue-50 border border-blue-200 rounded-lg p-4 mb-8 text-sm text-blue-800">
+        <strong>Template Instructions:</strong> <span class="editable">노란색 하이라이트</span> 부분을 실제 내용으로 교체하세요. 인쇄 시 안내 문구는 자동 숨김 처리됩니다.
+    </div>
+
+    <!-- Header -->
+    <header class="border-b-2 border-[#27B7CA] pb-6 mb-8">
+        <div class="flex justify-between items-start">
+            <div>
+                <p class="text-sm font-medium text-[#27B7CA] uppercase tracking-wider">Customer VoC Report</p>
+                <h1 class="text-2xl font-bold text-gray-900 mt-2">고객 분석 요구사항 VoC Report</h1>
+            </div>
+            <div class="text-right text-sm text-gray-500">
+                <p>VOC-<span class="editable">[Report Number]</span></p>
+                <p><span class="editable">[Date: YYYY-MM-DD]</span></p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Customer Info -->
+    <section class="mb-8">
+        <h2 class="text-lg font-bold text-gray-900 mb-4">1. 고객 정보</h2>
+        <table class="w-full text-sm">
+            <tbody>
+                <tr><td class="border border-gray-300 px-3 py-2 bg-gray-50 w-40 font-semibold">고객명 (기관)</td><td class="border border-gray-300 px-3 py-2"><span class="editable">[기관명]</span></td></tr>
+                <tr><td class="border border-gray-300 px-3 py-2 bg-gray-50 font-semibold">담당자</td><td class="border border-gray-300 px-3 py-2"><span class="editable">[이름 / 직책]</span></td></tr>
+                <tr><td class="border border-gray-300 px-3 py-2 bg-gray-50 font-semibold">연락처</td><td class="border border-gray-300 px-3 py-2"><span class="editable">[이메일 / 전화]</span></td></tr>
+                <tr><td class="border border-gray-300 px-3 py-2 bg-gray-50 font-semibold">국가/지역</td><td class="border border-gray-300 px-3 py-2"><span class="editable">[국내/해외 - 국가명]</span></td></tr>
+                <tr><td class="border border-gray-300 px-3 py-2 bg-gray-50 font-semibold">보유 장비</td><td class="border border-gray-300 px-3 py-2"><span class="editable">[HT-X1 / HT-2H / 미보유]</span></td></tr>
+                <tr><td class="border border-gray-300 px-3 py-2 bg-gray-50 font-semibold">VoC 수집 경로</td><td class="border border-gray-300 px-3 py-2"><span class="editable">[미팅 / 이메일 / 전화 / 전시회 / 세미나]</span></td></tr>
+                <tr><td class="border border-gray-300 px-3 py-2 bg-gray-50 font-semibold">수집일</td><td class="border border-gray-300 px-3 py-2"><span class="editable">[YYYY-MM-DD]</span></td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Analysis Requirements -->
+    <section class="mb-8">
+        <h2 class="text-lg font-bold text-gray-900 mb-4">2. 분석 요구사항</h2>
+
+        <h3 class="font-semibold text-gray-800 mt-4 mb-2">2.1 연구 배경 및 목적</h3>
+        <p class="text-gray-700 text-sm"><span class="editable">[고객의 연구 배경과 holotomography 분석을 요청하는 목적을 기술]</span></p>
+
+        <h3 class="font-semibold text-gray-800 mt-4 mb-2">2.2 Therapeutic Area</h3>
+        <div class="flex flex-wrap gap-2 mt-2">
+            <label class="flex items-center gap-1 text-sm"><input type="checkbox"> Oncology</label>
+            <label class="flex items-center gap-1 text-sm"><input type="checkbox"> Immuno-Oncology</label>
+            <label class="flex items-center gap-1 text-sm"><input type="checkbox"> Immunology</label>
+            <label class="flex items-center gap-1 text-sm"><input type="checkbox"> Hepatotoxicity</label>
+            <label class="flex items-center gap-1 text-sm"><input type="checkbox"> Neuroscience</label>
+            <label class="flex items-center gap-1 text-sm"><input type="checkbox"> Other: <span class="editable">[기타]</span></label>
+        </div>
+
+        <h3 class="font-semibold text-gray-800 mt-4 mb-2">2.3 분석 대상</h3>
+        <table class="w-full text-sm mt-2">
+            <tbody>
+                <tr><td class="border border-gray-300 px-3 py-2 bg-gray-50 w-40 font-semibold">세포 종류</td><td class="border border-gray-300 px-3 py-2"><span class="editable">[세포주명 / primary cell / organoid 등]</span></td></tr>
+                <tr><td class="border border-gray-300 px-3 py-2 bg-gray-50 font-semibold">약물/화합물</td><td class="border border-gray-300 px-3 py-2"><span class="editable">[약물명, 농도, 처리 시간]</span></td></tr>
+                <tr><td class="border border-gray-300 px-3 py-2 bg-gray-50 font-semibold">실험 조건</td><td class="border border-gray-300 px-3 py-2"><span class="editable">[배양 조건, 공배양 여부, 시간 경과 등]</span></td></tr>
+            </tbody>
+        </table>
+
+        <h3 class="font-semibold text-gray-800 mt-4 mb-2">2.4 요청 분석 항목</h3>
+        <p class="text-sm text-gray-600 mb-2">고객이 요청한 분석 항목을 PDD Framework 기준으로 매핑:</p>
+        <table class="w-full text-sm">
+            <thead>
+                <tr class="bg-gray-100">
+                    <th class="border border-gray-300 px-3 py-2 text-left">고객 요청 항목</th>
+                    <th class="border border-gray-300 px-3 py-2 text-left">PDD Phenotype (PHE-XXX)</th>
+                    <th class="border border-gray-300 px-3 py-2 text-left">PDD Metric (MET-XXX)</th>
+                    <th class="border border-gray-300 px-3 py-2 text-left">대응 가능 여부</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="border border-gray-300 px-3 py-2"><span class="editable">[요청 1]</span></td>
+                    <td class="border border-gray-300 px-3 py-2"><span class="editable">[PHE-XXX]</span></td>
+                    <td class="border border-gray-300 px-3 py-2"><span class="editable">[MET-XXX]</span></td>
+                    <td class="border border-gray-300 px-3 py-2"><span class="editable">[가능/부분가능/불가]</span></td>
+                </tr>
+                <tr>
+                    <td class="border border-gray-300 px-3 py-2"><span class="editable">[요청 2]</span></td>
+                    <td class="border border-gray-300 px-3 py-2"><span class="editable">[PHE-XXX]</span></td>
+                    <td class="border border-gray-300 px-3 py-2"><span class="editable">[MET-XXX]</span></td>
+                    <td class="border border-gray-300 px-3 py-2"><span class="editable">[가능/부분가능/불가]</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- PDD Framework Mapping -->
+    <section class="mb-8">
+        <h2 class="text-lg font-bold text-gray-900 mb-4">3. PDD Framework 매핑 분석</h2>
+
+        <h3 class="font-semibold text-gray-800 mt-4 mb-2">3.1 해당 Drug-Phenotype Mapping</h3>
+        <p class="text-sm text-gray-700">
+            <strong>매핑 ID:</strong> <span class="editable">[DPM-XXX]</span><br>
+            <strong>Drug Class:</strong> <span class="editable">[약물 클래스명]</span><br>
+            <strong>Expected Phenotypes:</strong> <span class="editable">[PHE-XXX, PHE-XXX, ...]</span>
+        </p>
+
+        <h3 class="font-semibold text-gray-800 mt-4 mb-2">3.2 권장 분석 워크플로우</h3>
+        <p class="text-sm text-gray-700"><span class="editable">[PDD 5단계 워크플로우 기반 고객 맞춤 분석 절차 제안]</span></p>
+
+        <h3 class="font-semibold text-gray-800 mt-4 mb-2">3.3 필요 Viewer 도구</h3>
+        <div class="flex flex-wrap gap-2 mt-2">
+            <label class="flex items-center gap-1 text-sm"><input type="checkbox"> 3D View</label>
+            <label class="flex items-center gap-1 text-sm"><input type="checkbox"> Ortho View</label>
+            <label class="flex items-center gap-1 text-sm"><input type="checkbox"> Multi View</label>
+            <label class="flex items-center gap-1 text-sm"><input type="checkbox"> Histogram</label>
+            <label class="flex items-center gap-1 text-sm"><input type="checkbox"> Intensity Plot</label>
+            <label class="flex items-center gap-1 text-sm"><input type="checkbox"> Line Measurement</label>
+            <label class="flex items-center gap-1 text-sm"><input type="checkbox"> Area Plot</label>
+        </div>
+    </section>
+
+    <!-- Gap Analysis -->
+    <section class="mb-8">
+        <h2 class="text-lg font-bold text-gray-900 mb-4">4. Gap 분석</h2>
+        <table class="w-full text-sm">
+            <thead>
+                <tr class="bg-gray-100">
+                    <th class="border border-gray-300 px-3 py-2 text-left">Gap 항목</th>
+                    <th class="border border-gray-300 px-3 py-2 text-left">현재 상태</th>
+                    <th class="border border-gray-300 px-3 py-2 text-left">필요 조치</th>
+                    <th class="border border-gray-300 px-3 py-2 text-left">우선순위</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="border border-gray-300 px-3 py-2"><span class="editable">[Gap 1]</span></td>
+                    <td class="border border-gray-300 px-3 py-2"><span class="editable">[현재 상태]</span></td>
+                    <td class="border border-gray-300 px-3 py-2"><span class="editable">[조치 사항]</span></td>
+                    <td class="border border-gray-300 px-3 py-2"><span class="editable">[High/Medium/Low]</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Action Items -->
+    <section class="mb-8">
+        <h2 class="text-lg font-bold text-gray-900 mb-4">5. Follow-up Action Items</h2>
+        <table class="w-full text-sm">
+            <thead>
+                <tr class="bg-gray-100">
+                    <th class="border border-gray-300 px-3 py-2 text-left">Action Item</th>
+                    <th class="border border-gray-300 px-3 py-2 text-left">담당자</th>
+                    <th class="border border-gray-300 px-3 py-2 text-left">기한</th>
+                    <th class="border border-gray-300 px-3 py-2 text-left">상태</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="border border-gray-300 px-3 py-2"><span class="editable">[Action 1]</span></td>
+                    <td class="border border-gray-300 px-3 py-2"><span class="editable">[담당자]</span></td>
+                    <td class="border border-gray-300 px-3 py-2"><span class="editable">[YYYY-MM-DD]</span></td>
+                    <td class="border border-gray-300 px-3 py-2"><span class="editable">[대기/진행/완료]</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Summary -->
+    <section class="mb-8">
+        <h2 class="text-lg font-bold text-gray-900 mb-4">6. 종합 의견</h2>
+        <div class="bg-gray-50 rounded-lg p-4 text-sm">
+            <span class="editable">[고객 요구사항에 대한 종합 의견, PDD Framework 활용 가능성, 추가 지원 필요 사항 등을 기술]</span>
+        </div>
+    </section>
+
+    <footer class="border-t border-gray-200 pt-4 text-xs text-gray-400 text-center">
+        <p>PDD Framework VoC Report Template v1.0 | Tomocube Inc.</p>
+    </footer>
+</body>
+</html>

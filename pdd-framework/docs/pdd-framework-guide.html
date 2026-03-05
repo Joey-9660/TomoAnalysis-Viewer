@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDD Framework Guide - Phenotype-to-Decision Mapping</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Titillium+Web:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Titillium Web', sans-serif; }
+        .step-number {
+            width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; font-weight: 700; font-size: 18px;
+        }
+        table { border-collapse: collapse; }
+        th, td { border: 1px solid #e5e7eb; padding: 8px 12px; text-align: left; }
+        th { background-color: #f3f4f6; font-weight: 600; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-[#27B7CA] to-[#1a8a99] text-white py-12">
+        <div class="max-w-5xl mx-auto px-6">
+            <p class="text-sm font-medium uppercase tracking-wider opacity-80">Tomocube Application Framework</p>
+            <h1 class="text-4xl font-bold mt-2">Phenotype-to-Decision (PDD) Mapping Framework</h1>
+            <p class="text-lg mt-4 opacity-90">A structured approach to translating holotomography-based cellular phenotype observations into actionable drug-response decisions.</p>
+            <p class="text-sm mt-6 opacity-70">Version 1.0.0 | Last Updated: 2026-03-05</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-10">
+        <div class="max-w-5xl mx-auto px-6 py-3 flex flex-wrap gap-4 text-sm font-medium text-gray-600">
+            <a href="#overview" class="hover:text-[#27B7CA]">Overview</a>
+            <a href="#workflow" class="hover:text-[#27B7CA]">Workflow</a>
+            <a href="#mappings" class="hover:text-[#27B7CA]">Drug-Phenotype Mappings</a>
+            <a href="#metrics" class="hover:text-[#27B7CA]">Core Metrics</a>
+            <a href="#phenotypes" class="hover:text-[#27B7CA]">Phenotype Library</a>
+            <a href="#use-cases" class="hover:text-[#27B7CA]">Use Cases</a>
+            <a href="#viewer-integration" class="hover:text-[#27B7CA]">Viewer Integration</a>
+        </div>
+    </nav>
+
+    <main class="max-w-5xl mx-auto px-6 py-12">
+
+        <!-- Section 1: Overview -->
+        <section id="overview" class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">1. Overview</h2>
+            <div class="bg-white rounded-xl shadow-sm p-8">
+                <h3 class="text-xl font-semibold mb-4">What is the PDD Framework?</h3>
+                <p class="text-gray-700 leading-relaxed mb-4">
+                    The <strong>Phenotype-to-Decision (PDD) Mapping Framework</strong> is a systematic methodology for connecting label-free cellular phenotype observations from Tomocube holotomography systems to actionable decisions in drug discovery, drug safety, and translational research.
+                </p>
+                <p class="text-gray-700 leading-relaxed mb-4">
+                    Unlike traditional endpoint assays that measure single parameters, the PDD framework leverages the rich, multi-parametric data from 3D refractive index (RI) tomograms to build a comprehensive phenotypic profile of drug-treated cells. This profile is then mapped against known drug-response patterns to support decision-making.
+                </p>
+
+                <h3 class="text-xl font-semibold mt-8 mb-4">Framework Components</h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-gray-50 rounded-lg p-5">
+                        <div class="text-[#27B7CA] font-bold text-lg mb-2">Drug-Phenotype Mapping Table</div>
+                        <p class="text-sm text-gray-600">Links drug classes and compounds to expected cellular phenotype changes observable via holotomography. 8 drug classes with 23+ phenotype associations.</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-5">
+                        <div class="text-[#27B7CA] font-bold text-lg mb-2">Phenotype Descriptor Library</div>
+                        <p class="text-sm text-gray-600">Detailed definitions of 23 cellular phenotypes with measurement methods, quantitative thresholds, and biological associations.</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-5">
+                        <div class="text-[#27B7CA] font-bold text-lg mb-2">Core Metric Library</div>
+                        <p class="text-sm text-gray-600">22 quantitative metrics with formulas, typical ranges, and direct mapping to TomoAnalysis Viewer measurement tools.</p>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-semibold mt-8 mb-4">Therapeutic Areas Covered</h3>
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-[#27B7CA] text-white px-3 py-1 rounded-full text-sm">Oncology</span>
+                    <span class="bg-[#27B7CA] text-white px-3 py-1 rounded-full text-sm">Immuno-Oncology</span>
+                    <span class="bg-[#27B7CA] text-white px-3 py-1 rounded-full text-sm">Immunology</span>
+                    <span class="bg-[#27B7CA] text-white px-3 py-1 rounded-full text-sm">Hepatotoxicity / Safety</span>
+                    <span class="bg-[#27B7CA] text-white px-3 py-1 rounded-full text-sm">Hematology</span>
+                    <span class="bg-[#27B7CA] text-white px-3 py-1 rounded-full text-sm">Neuroscience</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Workflow -->
+        <section id="workflow" class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">2. PDD Workflow</h2>
+            <div class="bg-white rounded-xl shadow-sm p-8">
+                <p class="text-gray-700 mb-8">The PDD framework follows a 5-step workflow from data acquisition to decision support:</p>
+
+                <div class="space-y-8">
+                    <div class="flex gap-6 items-start">
+                        <div class="step-number bg-[#27B7CA] text-white flex-shrink-0">1</div>
+                        <div>
+                            <h3 class="text-lg font-semibold">Data Acquisition</h3>
+                            <p class="text-gray-600 mt-1">Acquire 3D holotomography (HT) and optional fluorescence (FL) data using Tomocube systems (HT-X1, HT-2H). Set up time-lapse protocols for kinetic analysis.</p>
+                            <p class="text-sm text-gray-500 mt-2"><strong>Output:</strong> 3D RI tomogram datasets (.h5, .tiff)</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-6 items-start">
+                        <div class="step-number bg-[#27B7CA] text-white flex-shrink-0">2</div>
+                        <div>
+                            <h3 class="text-lg font-semibold">Phenotype Identification</h3>
+                            <p class="text-gray-600 mt-1">Use TomoAnalysis Viewer to visualize data and identify cellular phenotypes from the Phenotype Descriptor Library. Compare treatment groups to controls using 2D/3D views and orthogonal slicing.</p>
+                            <p class="text-sm text-gray-500 mt-2"><strong>Reference:</strong> Phenotype Descriptors (PHE-001 through PHE-023)</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-6 items-start">
+                        <div class="step-number bg-[#27B7CA] text-white flex-shrink-0">3</div>
+                        <div>
+                            <h3 class="text-lg font-semibold">Metric Quantification</h3>
+                            <p class="text-gray-600 mt-1">Quantify observed phenotypes using the Core Metric Library. Use the Viewer's built-in tools (Histogram, Intensity Plot, Line Measurement, Area Plot) mapped to each metric.</p>
+                            <p class="text-sm text-gray-500 mt-2"><strong>Reference:</strong> Core Metrics (MET-001 through MET-022)</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-6 items-start">
+                        <div class="step-number bg-[#27B7CA] text-white flex-shrink-0">4</div>
+                        <div>
+                            <h3 class="text-lg font-semibold">Drug-Phenotype Mapping</h3>
+                            <p class="text-gray-600 mt-1">Map the quantified phenotype profile to the Drug-Phenotype Mapping Table. Match observed patterns to known drug-class responses. Identify concordant and discordant phenotypes.</p>
+                            <p class="text-sm text-gray-500 mt-2"><strong>Reference:</strong> Drug-Phenotype Mappings (DPM-001 through DPM-008)</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-6 items-start">
+                        <div class="step-number bg-[#27B7CA] text-white flex-shrink-0">5</div>
+                        <div>
+                            <h3 class="text-lg font-semibold">Decision Support</h3>
+                            <p class="text-gray-600 mt-1">Generate actionable insights based on the mapping results. Apply decision criteria (efficacy indicators, resistance indicators, toxicity flags) to support go/no-go decisions.</p>
+                            <p class="text-sm text-gray-500 mt-2"><strong>Output:</strong> Phenotypic Drug Response Report</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Drug-Phenotype Mappings Summary -->
+        <section id="mappings" class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">3. Drug-Phenotype Mapping Table</h2>
+            <div class="bg-white rounded-xl shadow-sm p-8 overflow-x-auto">
+                <p class="text-gray-700 mb-6">Summary of drug classes and their expected phenotype signatures. For full details including decision criteria, see <code>mappings/drug-phenotype-mapping.json</code>.</p>
+
+                <table class="w-full text-sm">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Drug Class</th>
+                            <th>Therapeutic Area</th>
+                            <th>Example Compounds</th>
+                            <th>Key Phenotypes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>DPM-001</td>
+                            <td>Alkylating Agent</td>
+                            <td>Oncology</td>
+                            <td>Cisplatin, Carboplatin</td>
+                            <td>Cell Swelling, Nuclear Condensation, Membrane Blebbing, RI Increase</td>
+                        </tr>
+                        <tr>
+                            <td>DPM-002</td>
+                            <td>Antimetabolite</td>
+                            <td>Oncology</td>
+                            <td>5-FU, Gemcitabine</td>
+                            <td>Cell Cycle Arrest, Size Uniformity Change, Dry Mass Reduction</td>
+                        </tr>
+                        <tr>
+                            <td>DPM-003</td>
+                            <td>Kinase Inhibitor</td>
+                            <td>Oncology</td>
+                            <td>Imatinib, Erlotinib</td>
+                            <td>Morphological Flattening, Reduced Motility, Vacuolization</td>
+                        </tr>
+                        <tr>
+                            <td>DPM-004</td>
+                            <td>Checkpoint Inhibitor</td>
+                            <td>Immuno-Oncology</td>
+                            <td>Nivolumab, Pembrolizumab</td>
+                            <td>T-cell Activation, Immune Clustering, Tumor Lysis</td>
+                        </tr>
+                        <tr>
+                            <td>DPM-005</td>
+                            <td>BCL-2 Inhibitor</td>
+                            <td>Oncology / Hematology</td>
+                            <td>Venetoclax, Navitoclax</td>
+                            <td>Nuclear Condensation, Cell Shrinkage, Blebbing, Apoptotic Bodies</td>
+                        </tr>
+                        <tr>
+                            <td>DPM-006</td>
+                            <td>Antibody-Drug Conjugate</td>
+                            <td>Oncology</td>
+                            <td>T-DM1, BV</td>
+                            <td>Selective Cell Death, Internalization Vesicles, Vacuolization</td>
+                        </tr>
+                        <tr>
+                            <td>DPM-007</td>
+                            <td>Corticosteroid</td>
+                            <td>Immunology</td>
+                            <td>Dexamethasone</td>
+                            <td>Immune Inactivation, Reduced Proliferation, Volume Decrease</td>
+                        </tr>
+                        <tr>
+                            <td>DPM-008</td>
+                            <td>Hepatotoxicity Inducer</td>
+                            <td>Safety</td>
+                            <td>Acetaminophen, Valproic acid</td>
+                            <td>Lipid Droplets, Hepatocyte Swelling, Mitochondrial Change, RI Increase</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section 4: Core Metrics Summary -->
+        <section id="metrics" class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">4. Core Metric Library</h2>
+            <div class="bg-white rounded-xl shadow-sm p-8 overflow-x-auto">
+                <p class="text-gray-700 mb-6">22 quantitative metrics organized by category. Each metric includes calculation method, typical ranges, and the corresponding TomoAnalysis Viewer tool. For full details, see <code>metrics/core-metric-library.json</code>.</p>
+
+                <table class="w-full text-sm">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Metric Name</th>
+                            <th>Category</th>
+                            <th>Unit</th>
+                            <th>Viewer Tool</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>MET-001</td><td>Cell Volume</td><td>Morphological</td><td>fL</td><td>3D View + Volume</td></tr>
+                        <tr><td>MET-002</td><td>Nuclear Volume</td><td>Nuclear</td><td>fL</td><td>3D View + Histogram</td></tr>
+                        <tr><td>MET-003</td><td>Mean Refractive Index</td><td>Biophysical</td><td>RIU</td><td>Histogram + Intensity Plot</td></tr>
+                        <tr><td>MET-004</td><td>RI Standard Deviation</td><td>Biophysical</td><td>RIU</td><td>Histogram</td></tr>
+                        <tr><td>MET-005</td><td>Sphericity Index</td><td>Morphological</td><td>0-1</td><td>3D View</td></tr>
+                        <tr><td>MET-006</td><td>Nucleus/Cytoplasm RI Ratio</td><td>Biophysical</td><td>ratio</td><td>Histogram + Line Measurement</td></tr>
+                        <tr><td>MET-007</td><td>Surface Roughness</td><td>Morphological</td><td>μm</td><td>3D View</td></tr>
+                        <tr><td>MET-008</td><td>Dry Mass</td><td>Biophysical</td><td>pg</td><td>Intensity + Area Plot</td></tr>
+                        <tr><td>MET-009</td><td>Proliferation Index</td><td>Population</td><td>fold/24h</td><td>Multi View</td></tr>
+                        <tr><td>MET-010</td><td>Dry Mass Growth Rate</td><td>Biophysical</td><td>pg/h</td><td>Intensity Plot</td></tr>
+                        <tr><td>MET-011</td><td>Cell Height (Aspect Ratio)</td><td>Morphological</td><td>μm</td><td>Ortho View + Line</td></tr>
+                        <tr><td>MET-012</td><td>Migration Speed</td><td>Behavioral</td><td>μm/min</td><td>Multi View</td></tr>
+                        <tr><td>MET-013</td><td>Migration Directionality</td><td>Behavioral</td><td>0-1</td><td>Multi View</td></tr>
+                        <tr><td>MET-014</td><td>Intracellular Particle Count</td><td>Intracellular</td><td>count</td><td>3D View + Histogram</td></tr>
+                        <tr><td>MET-015</td><td>Cell Clustering Index</td><td>Spatial</td><td>ratio</td><td>2D View + Multi View</td></tr>
+                        <tr><td>MET-016</td><td>Immune-Tumor Contact Ratio</td><td>Immune</td><td>ratio</td><td>3D View + Multi View</td></tr>
+                        <tr><td>MET-017</td><td>Cell Death Rate</td><td>Viability</td><td>%/24h</td><td>Multi View</td></tr>
+                        <tr><td>MET-018</td><td>Selectivity Index</td><td>Targeted</td><td>ratio</td><td>Comparison</td></tr>
+                        <tr><td>MET-019</td><td>Vesicle Internalization Rate</td><td>Kinetic</td><td>vesicles/h</td><td>Multi View + 3D</td></tr>
+                        <tr><td>MET-020</td><td>Mitotic Index</td><td>Proliferation</td><td>%</td><td>2D View + Multi View</td></tr>
+                        <tr><td>MET-021</td><td>Lipid Droplet Area Fraction</td><td>Hepatotoxicity</td><td>%</td><td>Histogram + 3D View</td></tr>
+                        <tr><td>MET-022</td><td>RI Texture Entropy</td><td>Texture</td><td>bits</td><td>Histogram</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section 5: Phenotype Library Summary -->
+        <section id="phenotypes" class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">5. Phenotype Descriptor Library</h2>
+            <div class="bg-white rounded-xl shadow-sm p-8">
+                <p class="text-gray-700 mb-6">23 phenotype descriptors organized by category with severity thresholds. For full details, see <code>mappings/phenotype-descriptors.json</code>.</p>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <h3 class="font-semibold text-gray-900 mb-3">Morphological (6)</h3>
+                        <ul class="text-sm text-gray-600 space-y-1 list-disc list-inside">
+                            <li>PHE-001: Cell Volume Increase (Swelling)</li>
+                            <li>PHE-005: Cell Size Uniformity Change</li>
+                            <li>PHE-007: Morphological Flattening</li>
+                            <li>PHE-014: Cell Shrinkage</li>
+                            <li>PHE-020: Cell Volume Decrease</li>
+                            <li>PHE-022: Hepatocyte Swelling</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-900 mb-3">Nuclear (1)</h3>
+                        <ul class="text-sm text-gray-600 space-y-1 list-disc list-inside">
+                            <li>PHE-002: Nuclear Condensation</li>
+                        </ul>
+                        <h3 class="font-semibold text-gray-900 mt-4 mb-3">Membrane (1)</h3>
+                        <ul class="text-sm text-gray-600 space-y-1 list-disc list-inside">
+                            <li>PHE-003: Membrane Blebbing</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-900 mb-3">Biophysical (2)</h3>
+                        <ul class="text-sm text-gray-600 space-y-1 list-disc list-inside">
+                            <li>PHE-006: Dry Mass Reduction</li>
+                            <li>PHE-010: RI Increase (Cytoplasm)</li>
+                        </ul>
+                        <h3 class="font-semibold text-gray-900 mt-4 mb-3">Proliferation (2)</h3>
+                        <ul class="text-sm text-gray-600 space-y-1 list-disc list-inside">
+                            <li>PHE-004: Cell Cycle Arrest</li>
+                            <li>PHE-019: Reduced Cell Proliferation</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-900 mb-3">Intracellular (3)</h3>
+                        <ul class="text-sm text-gray-600 space-y-1 list-disc list-inside">
+                            <li>PHE-009: Cytoplasmic Vacuolization</li>
+                            <li>PHE-017: Internalization Vesicle Formation</li>
+                            <li>PHE-023: Mitochondrial Morphology Change</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-900 mb-3">Behavioral (1)</h3>
+                        <ul class="text-sm text-gray-600 space-y-1 list-disc list-inside">
+                            <li>PHE-008: Reduced Motility / Migration</li>
+                        </ul>
+                        <h3 class="font-semibold text-gray-900 mt-4 mb-3">Immune (3)</h3>
+                        <ul class="text-sm text-gray-600 space-y-1 list-disc list-inside">
+                            <li>PHE-011: T-cell Activation Morphology</li>
+                            <li>PHE-012: Immune Cell Clustering</li>
+                            <li>PHE-018: Immune Cell Inactivation</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-900 mb-3">Cell Death (3)</h3>
+                        <ul class="text-sm text-gray-600 space-y-1 list-disc list-inside">
+                            <li>PHE-013: Tumor Cell Lysis (Co-culture)</li>
+                            <li>PHE-015: Apoptotic Body Formation</li>
+                            <li>PHE-016: Selective Cell Death</li>
+                        </ul>
+                        <h3 class="font-semibold text-gray-900 mt-4 mb-3">Hepatotoxicity (1)</h3>
+                        <ul class="text-sm text-gray-600 space-y-1 list-disc list-inside">
+                            <li>PHE-021: Lipid Droplet Accumulation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Use Cases -->
+        <section id="use-cases" class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">6. Use Cases</h2>
+            <div class="space-y-6">
+                <div class="bg-white rounded-xl shadow-sm p-8">
+                    <h3 class="text-xl font-semibold text-[#27B7CA] mb-3">Use Case 1: Oncology Drug Screening</h3>
+                    <p class="text-gray-700 mb-4">Evaluate compound efficacy across a panel of cancer cell lines using phenotypic profiling.</p>
+                    <div class="bg-gray-50 rounded-lg p-4 text-sm">
+                        <strong>Workflow:</strong> Treat cells with test compound at multiple concentrations &rarr; Acquire HT data at 24h, 48h, 72h &rarr; Quantify MET-001 (Volume), MET-003 (RI), MET-008 (Dry Mass), MET-017 (Death Rate) &rarr; Map to DPM-001 through DPM-006 patterns &rarr; Classify mechanism of action &rarr; Determine IC50 and therapeutic index.
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm p-8">
+                    <h3 class="text-xl font-semibold text-[#27B7CA] mb-3">Use Case 2: Immunotherapy Potency Assessment</h3>
+                    <p class="text-gray-700 mb-4">Assess checkpoint inhibitor or CAR-T efficacy in immune cell-tumor co-culture systems.</p>
+                    <div class="bg-gray-50 rounded-lg p-4 text-sm">
+                        <strong>Workflow:</strong> Set up immune-tumor co-culture &rarr; Add checkpoint inhibitor &rarr; Time-lapse HT acquisition over 5 days &rarr; Quantify MET-015 (Clustering), MET-016 (Contact Ratio), MET-017 (Death Rate) &rarr; Map to DPM-004 patterns &rarr; Assess immune activation and tumor killing.
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm p-8">
+                    <h3 class="text-xl font-semibold text-[#27B7CA] mb-3">Use Case 3: Hepatotoxicity Safety Screening</h3>
+                    <p class="text-gray-700 mb-4">Evaluate drug candidates for liver toxicity using primary hepatocytes or iPSC-derived hepatocytes.</p>
+                    <div class="bg-gray-50 rounded-lg p-4 text-sm">
+                        <strong>Workflow:</strong> Treat hepatocytes with test compound &rarr; Acquire HT data at 24h, 48h, 72h &rarr; Quantify MET-021 (Lipid Droplets), MET-001 (Volume), MET-003 (RI), MET-022 (RI Entropy) &rarr; Map to DPM-008 patterns &rarr; Flag hepatotoxicity risk &rarr; Report DILI potential.
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm p-8">
+                    <h3 class="text-xl font-semibold text-[#27B7CA] mb-3">Use Case 4: ADC Selectivity Profiling</h3>
+                    <p class="text-gray-700 mb-4">Evaluate antibody-drug conjugate selectivity between target-positive and target-negative cell lines.</p>
+                    <div class="bg-gray-50 rounded-lg p-4 text-sm">
+                        <strong>Workflow:</strong> Treat Ag+ and Ag- cell lines with ADC &rarr; Acquire HT data &rarr; Quantify MET-018 (Selectivity), MET-019 (Internalization Rate), MET-017 (Death Rate) &rarr; Map to DPM-006 patterns &rarr; Determine therapeutic window and bystander effect.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Viewer Integration -->
+        <section id="viewer-integration" class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">7. TomoAnalysis Viewer Integration</h2>
+            <div class="bg-white rounded-xl shadow-sm p-8">
+                <p class="text-gray-700 mb-6">Each metric in the Core Metric Library is mapped to specific TomoAnalysis Viewer tools for measurement:</p>
+
+                <table class="w-full text-sm">
+                    <thead>
+                        <tr>
+                            <th>Viewer Tool</th>
+                            <th>Applicable Metrics</th>
+                            <th>Usage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>3D View</strong></td>
+                            <td>MET-001, -002, -005, -007, -014, -016, -021</td>
+                            <td>Volume rendering, surface analysis, 3D morphology assessment</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ortho View</strong></td>
+                            <td>MET-011</td>
+                            <td>Cross-sectional height measurement, aspect ratio analysis</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2D View</strong></td>
+                            <td>MET-015, -020</td>
+                            <td>Population-level spatial analysis, mitotic event detection</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Multi View</strong></td>
+                            <td>MET-009, -012, -013, -017, -019, -020</td>
+                            <td>Time-lapse analysis, kinetic measurements, side-by-side comparison</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Histogram</strong></td>
+                            <td>MET-002, -003, -004, -006, -014, -021, -022</td>
+                            <td>RI distribution analysis, threshold identification</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Intensity Plot</strong></td>
+                            <td>MET-003, -008, -010</td>
+                            <td>RI profile along a path, dry mass time series</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Line Measurement</strong></td>
+                            <td>MET-006, -011</td>
+                            <td>Distance and RI profile along user-defined line</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Area Plot</strong></td>
+                            <td>MET-008</td>
+                            <td>Regional dry mass and RI integration</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Synced Control</strong></td>
+                            <td>MET-012</td>
+                            <td>Synchronized viewing for comparative kinetic analysis</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-400 py-8 text-center text-sm">
+        <p>PDD Framework v1.0.0 | Tomocube Inc.</p>
+        <p class="mt-1">For use with TomoAnalysis Viewer v3.0.12+</p>
+    </footer>
+
+</body>
+</html>
